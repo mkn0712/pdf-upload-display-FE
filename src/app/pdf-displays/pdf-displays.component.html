@@ -1,0 +1,35 @@
+<div *ngFor="let file of pdfFiles">
+    <div>
+      <h2>{{ file.fileName }}</h2>
+      <div class="pdf-container">
+        <pdf-viewer [src]="file.filePath"
+                    [render-text]="true"
+                    [show-all]="true"
+                    [zoom]="zoom"
+                    [original-size]="originalSize"
+                    [page]="page"
+                    (after-load-complete)="onLoadComplete($event)"
+                    style="width:600px; height: 400px;">
+        </pdf-viewer>
+      </div>
+      
+      <div class="toolbar">
+        <button mat-icon-button (click)="zoomIn()">
+          <mat-icon>zoom_in</mat-icon>
+        </button>
+        <button mat-icon-button (click)="zoomOut()">
+          <mat-icon>zoom_out</mat-icon>
+        </button>
+        <button mat-icon-button (click)="fitToPage()">
+          <mat-icon>fit_screen</mat-icon>
+        </button>
+        <button mat-icon-button (click)="previousPage()" [disabled]="page === 1">
+          <mat-icon>keyboard_arrow_left</mat-icon>
+        </button>
+        <span>Page {{ page }} of {{ totalPages }}</span>
+        <button mat-icon-button (click)="nextPage()" [disabled]="page === totalPages">
+          <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
+      </div>
+    </div>
+</div>

@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'pdf-upload-display-fe';
+  displayFlag = false;
+  uploadFlag(event: any) {
+    if(event) {
+      this.displayFlag = true;
+    }
+  }
 }
